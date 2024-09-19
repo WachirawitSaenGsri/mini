@@ -1,1 +1,1 @@
-# CAFE-POS
+# Cafe Pos
