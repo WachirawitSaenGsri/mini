@@ -1,0 +1,60 @@
+{#member_login_form.html#}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% tailwind_css %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: "Alegreya", serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+      }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+    {% include 'header.html' %}
+
+    <div class="min-h-screen bg-gray-100 flex flex-col justify-center">
+        <div class="max-w-screen-md w-full mx-auto my-5">
+            <div class="bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
+                <div class="flex justify-center mb-5">
+                    <p class="text-2xl font-bold">Login</p>
+                </div>
+                <form method="POST" class="space-y-4">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="username" class="text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" name="username" id="username"
+                               class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm
+                                      focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" name="password" id="password"
+                               class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm
+                                      focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>
+                    </div>
+                    <div>
+                        <button type="submit"
+                                class="w-full bg-indigo-600 text-white p-3 rounded-md font-medium
+                                       hover:bg-indigo-700 focus:outline-none focus:ring-2
+                                       focus:ring-indigo-500 focus:ring-opacity-50">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}
+
+
+

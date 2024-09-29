@@ -1,0 +1,13 @@
+django
+httpie
+openpyxl
+pillow
+pyyaml
+reportlab
+ipython
+psycopg
+sqlite
+mysql
+requests
+django-tailwind
+django-browser-reload

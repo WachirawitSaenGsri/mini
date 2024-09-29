@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER POS</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #logoutDialog {
+            z-index: 1000; /* ให้ Dialog อยู่ด้านหน้าสุด */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex items-center justify-between">
+            <!-- Brand Name -->
+            <h1 class="text-xl font-bold tracking-wider">ORDER POS</h1>
+            <!-- Navigation Menu -->
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="{% url 'home' %}" class="hover:underline transition-colors duration-200">Home</a></li>
+                    <li><a href="{% url 'order_list' %}" class="hover:underline transition-colors duration-200">Orders</a></li>
+                    <li><a href="{% url 'create_order' %}" class="hover:underline transition-colors duration-200">Create Order</a></li>
+                    <li><a href="{% url 'login' %}" class="hover:underline transition-colors duration-200">Login</a></li>
+                    <li><a href="{% url 'register' %}" class="hover:underline transition-colors duration-200">Register</a></li>
+                    <li><a id="logoutBtn" href="#" class="text-red-200 hover:text-red-500 transition-colors duration-200">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Logout Confirmation Dialog -->
+    <div id="logoutDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Confirm Logout</h2>
+            <p class="text-gray-600 mb-6">Are you sure you want to log out?</p>
+            <div class="flex justify-end space-x-4">
+                <button id="cancelBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition duration-200">Cancel</button>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Dialog Interaction -->
+    <script>
+        // Get the dialog and buttons
+        const logoutBtn = document.getElementById('logoutBtn');
+        const logoutDialog = document.getElementById('logoutDialog');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        // Show the dialog when the logout button is clicked
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutDialog.classList.remove('hidden');
+        });
+
+        // Hide the dialog when the cancel button is clicked
+        cancelBtn.addEventListener('click', () => {
+            logoutDialog.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

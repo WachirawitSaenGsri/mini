@@ -1,0 +1,45 @@
+{#'member_register_form.html'#}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    {% tailwind_css %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: "Alegreya", serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+      }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50"> <!-- เพิ่ม min-h-screen ที่นี่ -->
+    {% include 'header.html' %}
+
+<div class="flex flex-col py-10 mx-10 justify-around">
+  <div class="w-[640px] mx-auto shadow-xl rounded-xl mt-[-32px] mb-10 p-10 bg-zinc-100">
+        <div class="mb-4">
+        <p class="block text-xl text-gray-700 font-bold mb-2">
+            User Register
+        </p>
+        </div>
+        <div class="mt-4 mb-4 flex justify">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ member_form.as_ul }}
+                <div class="py-2 mx-auto mt-2">
+                    <button class="px-6 py-1 my-2 justify-center hover:bg-green-700 hover:text-white bg-green-100 mx-auto border rounded-xl" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

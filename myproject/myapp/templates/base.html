@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="bg-cover bg-center bg-no-repeat min-h-screen"
+      style="background-image: url('{% static 'images/product-placeholder.jpg' %}');">
+
+    <!-- Header Section -->
+    {% include 'header.html' %}
+
+    <!-- Main Content Section -->
+    <div class="flex items-center justify-center h-full">
+        <div class="text-center bg-white bg-opacity-80 p-10 rounded-lg shadow-lg max-w-4xl">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to the Home Page</h1>
+            <p class="text-lg text-gray-700">Welcome to ODER POS.</p>
+        </div>
+    </div>
+
+</body>
+</html>

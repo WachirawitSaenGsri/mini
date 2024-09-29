@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Order</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-blue-50 min-h-screen flex items-center justify-center p-6">
+    <div class="container max-w-lg bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Edit Order</h2>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Customer Name -->
+            <div class="relative">
+                <label class="block text-gray-700 font-medium mb-2" for="customer_name">Customer Name</label>
+                <input type="text" name="customer_name" id="customer_name" value="{{ order.customer.name }}"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+            </div>
+
+            <!-- Customer Email -->
+            <div class="relative">
+                <label class="block text-gray-700 font-medium mb-2" for="customer_email">Customer Email</label>
+                <input type="email" name="customer_email" id="customer_email" value="{{ order.customer.email }}"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+            </div>
+
+            <!-- Product -->
+            <div class="relative">
+                <label class="block text-gray-700 font-medium mb-2" for="product">Product</label>
+                <select name="product" id="product" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+                    {% for product in products %}
+                        <option value="{{ product.name }}" {% if product.name == order.items.first.product.name %}selected{% endif %}>
+                            {{ product.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Quantity -->
+            <div class="relative">
+                <label class="block text-gray-700 font-medium mb-2" for="quantity">Quantity</label>
+                <input type="number" name="quantity" id="quantity" value="{{ order.items.first.quantity }}"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+            </div>
+
+            <!-- Payment Method -->
+            <div class="relative">
+                <label class="block text-gray-700 font-medium mb-2" for="payment_method">Payment Method</label>
+                <select name="payment_method" id="payment_method" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+                    <option value="1" {% if order.payment_method == 1 %}selected{% endif %}>Cash</option>
+                    <option value="2" {% if order.payment_method == 2 %}selected{% endif %}>Credit Card</option>
+                    <option value="3" {% if order.payment_method == 3 %}selected{% endif %}>Debit Card</option>
+                    <option value="4" {% if order.payment_method == 4 %}selected{% endif %}>Mobile Payment</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg shadow hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                Update Order
+            </button>
+        </form>
+
+        <!-- Back Link -->
+        <div class="text-center mt-6">
+            <a href="{% url 'order_list' %}" class="text-blue-500 hover:underline">Back to Order List</a>
+        </div>
+    </div>
+</body>
+</html>
