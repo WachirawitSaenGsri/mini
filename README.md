@@ -3,7 +3,7 @@
 cd myproject
 
 # ติดตั้ง
-pip install pip install -r install.txt
+pip install -r install.txt
 
 # รันmysql
 mysqld --console
