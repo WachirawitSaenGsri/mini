@@ -1,9 +1,9 @@
 # Mini Project
-# ติดตั้ง
-pip install pip install -r install.txt
-
 # เข้าไปในโปรเจกต์
 cd myproject
+
+# ติดตั้ง
+pip install pip install -r install.txt
 
 # รันmysql
 mysqld --console
