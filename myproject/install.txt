@@ -6,7 +6,6 @@ pyyaml
 reportlab
 ipython
 psycopg
-sqlite
 mysql
 requests
 django-tailwind
